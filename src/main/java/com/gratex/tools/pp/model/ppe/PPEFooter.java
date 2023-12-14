@@ -1,20 +1,13 @@
 package com.gratex.tools.pp.model.ppe;
 
-public class PPEFooter {
+import com.gratex.tools.pp.model.PPPart;
 
-	private String code; // 1
+public class PPEFooter extends PPPart {
+
 	private String voucherCount; // 5
 	private String totalAmount; // 13 (xxxxxxxxxx.xx)
 	private String totalPrice; // 10 (xxxxxxx.xx)
 	private String sum; // 13 (xxxxxxxxxx.xx)
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
 
 	public String getVoucherCount() {
 		return voucherCount;

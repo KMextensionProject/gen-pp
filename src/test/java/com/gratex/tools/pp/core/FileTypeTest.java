@@ -15,7 +15,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
-public class FileTypeTest {
+class FileTypeTest {
 
 	@Test
 	@DisplayName("File extension detection")

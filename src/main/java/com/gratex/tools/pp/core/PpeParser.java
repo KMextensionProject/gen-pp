@@ -38,7 +38,7 @@ public class PpeParser {
 	 * @param line
 	 * @return
 	 */
-	public PPEHeader parseHeader(String line) {
+	PPEHeader parseHeader(String line) {
 		// TODO: convert this to meta data objects and document it
 		int start = 0;
 		int end = 1;
@@ -61,7 +61,7 @@ public class PpeParser {
 	 * @param line
 	 * @return
 	 */
-	public PPEFooter parseFooter(String line) {
+	PPEFooter parseFooter(String line) {
 		int start = 0;
 		int end = 1;
 
@@ -79,7 +79,7 @@ public class PpeParser {
 	 * @param lines
 	 * @return
 	 */
-	public List<PPERecord> parseBody(List<String> lines) {
+	List<PPERecord> parseBody(List<String> lines) {
 		return lines.stream()
 			.map(this::parseRecord)
 			.collect(toList());

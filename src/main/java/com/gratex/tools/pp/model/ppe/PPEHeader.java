@@ -1,24 +1,16 @@
 package com.gratex.tools.pp.model.ppe;
 
-public class PPEHeader {
+import com.gratex.tools.pp.model.PPHeader;
 
-	private String code; // 1
+public class PPEHeader extends PPHeader {
+
 	private String iban1; // 34
 	private String iban2; // 34
 	private String fileCreated; // 8 (ddmmrrrr)
-	private String serialNumberIn12M; // 4
 	private String voucherValidity; // 2
 	private String diacriticsCode; // 3
 	private String testLetterForDiacriticsCode; // 1 (char?)
 	private String payOutDate; // 8
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
 
 	public String getIban1() {
 		return iban1;
@@ -42,14 +34,6 @@ public class PPEHeader {
 
 	public void setFileCreated(String fileCreated) {
 		this.fileCreated = fileCreated;
-	}
-
-	public String getSerialNumberIn12M() {
-		return serialNumberIn12M;
-	}
-
-	public void setSerialNumberIn12M(String serialNumberIn12M) {
-		this.serialNumberIn12M = serialNumberIn12M;
 	}
 
 	public String getVoucherValidity() {
