@@ -20,7 +20,6 @@ import com.gratex.tools.pp.io.ppe.PPERecord;
 public class PpeParser implements FileParser<PPEFile> {
 
 	/**
-	 * TODO: leave only this method with public modifier, others must be package private, but test cases must be moved under this package
 	 * @param source
 	 * @return
 	 * @throws IOException

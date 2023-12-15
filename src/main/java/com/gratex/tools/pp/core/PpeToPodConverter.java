@@ -4,11 +4,11 @@ import static com.gratex.tools.pp.utils.DataGenerator.getRandomNumericString;
 import static com.gratex.tools.pp.utils.DateFormatter.DAY_MONTH_FORMAT_SCALE;
 import static com.gratex.tools.pp.utils.DateFormatter.formatNumber;
 import static com.gratex.tools.pp.utils.DateFormatter.fromDDMMYYYY;
+import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.gratex.tools.pp.io.pod.PODFile;
 import com.gratex.tools.pp.io.pod.PODFooter;
@@ -51,7 +51,7 @@ public final class PpeToPodConverter implements PPFileConverter<PPEFile, PODFile
 	private List<PODRecord> convertBody(List<PPERecord> ppeBody) {
 		return ppeBody.stream()
 			.map(this::convertRecord)
-			.collect(Collectors.toList());
+			.collect(toList());
 	}
 
 	private PODRecord convertRecord(PPERecord ppeRecord) {
@@ -73,7 +73,5 @@ public final class PpeToPodConverter implements PPFileConverter<PPEFile, PODFile
 		podFooter.setSum(ppeFooter.getSum());
 		return podFooter;
 	}
-
-//	convertAndWrite() ? or do it directly on PDFile objects?
 
 }
