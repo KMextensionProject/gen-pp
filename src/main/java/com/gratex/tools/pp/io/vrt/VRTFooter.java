@@ -1,6 +1,6 @@
-package com.gratex.tools.pp.model.vrt;
+package com.gratex.tools.pp.io.vrt;
 
-import com.gratex.tools.pp.model.PPPart;
+import com.gratex.tools.pp.core.PPPart;
 
 public class VRTFooter extends PPPart {
 

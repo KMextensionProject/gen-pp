@@ -1,23 +1,24 @@
 package com.gratex.tools.pp.core;
 
-import static com.gratex.tools.main.DummyDataGenerator.appendSpacesToMatchSize;
-import static com.gratex.tools.main.DummyDataGenerator.getRandomNumericString;
-import static com.gratex.tools.main.PPFormatUtil.toSlovakDateFormatString;
-import static com.gratex.tools.main.PPFormatUtil.fromDDMMYYYY;
+import static com.gratex.tools.pp.utils.DataGenerator.appendSpacesToEnsureSize;
+import static com.gratex.tools.pp.utils.DataGenerator.getRandomNumericString;
+import static com.gratex.tools.pp.utils.DateFormatter.fromDDMMYYYY;
+import static com.gratex.tools.pp.utils.DateFormatter.toSlovakDateFormatString;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.gratex.tools.pp.model.ppe.PPEFile;
-import com.gratex.tools.pp.model.ppe.PPEFooter;
-import com.gratex.tools.pp.model.ppe.PPEHeader;
-import com.gratex.tools.pp.model.ppe.PPERecord;
-import com.gratex.tools.pp.model.vrt.VRTFile;
-import com.gratex.tools.pp.model.vrt.VRTFooter;
-import com.gratex.tools.pp.model.vrt.VRTHeader;
-import com.gratex.tools.pp.model.vrt.VRTRecord;
+import com.gratex.tools.pp.io.ppe.PPEFile;
+import com.gratex.tools.pp.io.ppe.PPEFooter;
+import com.gratex.tools.pp.io.ppe.PPEHeader;
+import com.gratex.tools.pp.io.ppe.PPERecord;
+import com.gratex.tools.pp.io.vrt.EnumReasonUnpaid;
+import com.gratex.tools.pp.io.vrt.VRTFile;
+import com.gratex.tools.pp.io.vrt.VRTFooter;
+import com.gratex.tools.pp.io.vrt.VRTHeader;
+import com.gratex.tools.pp.io.vrt.VRTRecord;
 
 /**
  *
@@ -43,20 +44,20 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		vrtHeader.setDateReceived(toSlovakDateFormatString(ppeReceived));
 
 		// these fields must be generated
-		vrtHeader.setBuildingNumber(appendSpacesToMatchSize("17/C", 7));
-		vrtHeader.setMunicipality(appendSpacesToMatchSize("Bratislava", 20));
+		vrtHeader.setBuildingNumber(appendSpacesToEnsureSize("17/C", 7));
+		vrtHeader.setMunicipality(appendSpacesToEnsureSize("Bratislava", 20));
 		vrtHeader.setPostOfficePostalCode("82104");
-		vrtHeader.setE2EReference(appendSpacesToMatchSize("test referencie", 35));
+		vrtHeader.setE2EReference(appendSpacesToEnsureSize("/VS1234567890/SS1234567890/KS1234", 35));
 		vrtHeader.setReceivedVoucherCount("123456");
 		vrtHeader.setSenderCode("1234");
 		vrtHeader.setReturnedPrice(getRandomNumericString(10) + ".99");
-		vrtHeader.setSender(appendSpacesToMatchSize("Martin", 28));
+		vrtHeader.setSender(appendSpacesToEnsureSize("Martin Krajcovic", 28));
 		vrtHeader.setStampNumber("ABC123");
-		vrtHeader.setStreet(appendSpacesToMatchSize("Galvaniho", 20));
+		vrtHeader.setStreet(appendSpacesToEnsureSize("Galvaniho", 20));
 		vrtHeader.setTotalAmountRemitted(getRandomNumericString(10) + ".99");
 		vrtHeader.setTotalPriceRemitted(getRandomNumericString(7) + ".29");
 		vrtHeader.setUnpaidAmountAttributionDate("14.12.2023");
-		vrtHeader.setUnpaidVouchersCount(appendSpacesToMatchSize("66", 6));
+		vrtHeader.setUnpaidVouchersCount(appendSpacesToEnsureSize("66", 6));
 		vrtHeader.setVoucherIssueDate("13.12.2023");
 		vrtHeader.setVoucherReceiveDate("13.12.2023");
 		vrtHeader.setVoucherValidityDate("20.10.2023");
@@ -84,8 +85,8 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		vrtRecord.setPostOfficePostalCode(ppeRecord.getPostalCode());
 
 		// these two fields must be generated, because they cannot be mapped
-		vrtRecord.setReasonUnpaid("DOVOD:" + getRandomNumericString(15));
 		vrtRecord.setFileNumber(getRandomNumericString(5));
+		vrtRecord.setReasonUnpaid(EnumReasonUnpaid.RECIPIENT_UNKNOWN);
 		return vrtRecord;
 	}
 

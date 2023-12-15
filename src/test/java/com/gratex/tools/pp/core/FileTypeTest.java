@@ -22,9 +22,9 @@ class FileTypeTest {
 	void fileExtensionTest() {
 		Path ppeFile = Paths.get("/home/UX/mkrajcovicux/Desktop/myFile.ppe");
 
-		assertTrue (PPE.isExtensionOnFile(ppeFile));
-		assertFalse(POD.isExtensionOnFile(ppeFile));
-		assertFalse(VRT.isExtensionOnFile(null));
+		assertTrue (PPE.isExtensionOn(ppeFile));
+		assertFalse(POD.isExtensionOn(ppeFile));
+		assertFalse(VRT.isExtensionOn(null));
 	}
 
 }

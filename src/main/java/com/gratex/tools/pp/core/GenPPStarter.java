@@ -1,21 +1,18 @@
-package com.gratex.tools.main;
+package com.gratex.tools.pp.core;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.gratex.tools.pp.core.PpeParser;
-import com.gratex.tools.pp.core.PpeToPodConverter;
-import com.gratex.tools.pp.core.PpeToVrtConverter;
-import com.gratex.tools.pp.model.pod.PODFile;
-import com.gratex.tools.pp.model.ppe.PPEFile;
-import com.gratex.tools.pp.model.vrt.VRTFile;
+import com.gratex.tools.pp.io.pod.PODFile;
+import com.gratex.tools.pp.io.ppe.PPEFile;
+import com.gratex.tools.pp.io.vrt.VRTFile;
 
 /**
  *
  * @author mkrajcovicux
  */
-public class GenPP {
+public class GenPPStarter {
 
 	public static void main(String[] args) throws Exception {
 		Path ppePath = Paths.get(System.getProperty("user.dir"), "src/test/resources/b2258611_iban.ppe");

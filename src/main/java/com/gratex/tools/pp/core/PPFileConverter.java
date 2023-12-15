@@ -2,8 +2,6 @@ package com.gratex.tools.pp.core;
 
 import java.io.IOException;
 
-import com.gratex.tools.pp.model.PPFile;
-
 /**
  *
  * @author mkrajcovicux

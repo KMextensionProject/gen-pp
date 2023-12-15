@@ -24,7 +24,7 @@ public enum FileType {
 	 * @param path
 	 * @return
 	 */
-	public boolean isExtensionOnFile(Path path) {
+	public boolean isExtensionOn(Path path) {
 		if (nonNull(path)) {
 			String file = String.valueOf(path.getFileName());
 			return file.endsWith(extension);

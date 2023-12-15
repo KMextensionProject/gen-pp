@@ -1,4 +1,4 @@
-package com.gratex.tools.pp.model.vrt;
+package com.gratex.tools.pp.io.vrt;
 
 import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
@@ -6,7 +6,7 @@ import static java.util.Objects.nonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gratex.tools.pp.model.PPFile;
+import com.gratex.tools.pp.core.PPFile;
 
 public class VRTFile extends PPFile {
 

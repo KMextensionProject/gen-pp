@@ -1,24 +1,24 @@
 package com.gratex.tools.pp.core;
 
-import static com.gratex.tools.main.DummyDataGenerator.getRandomNumericString;
-import static com.gratex.tools.main.PPFormatUtil.DAY_MONTH_FORMAT_SCALE;
-import static com.gratex.tools.main.PPFormatUtil.formatNumber;
-import static com.gratex.tools.main.PPFormatUtil.fromDDMMYYYY;
+import static com.gratex.tools.pp.utils.DataGenerator.getRandomNumericString;
+import static com.gratex.tools.pp.utils.DateFormatter.DAY_MONTH_FORMAT_SCALE;
+import static com.gratex.tools.pp.utils.DateFormatter.formatNumber;
+import static com.gratex.tools.pp.utils.DateFormatter.fromDDMMYYYY;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.gratex.tools.main.DummyDataGenerator;
-import com.gratex.tools.pp.model.pod.PODFile;
-import com.gratex.tools.pp.model.pod.PODFooter;
-import com.gratex.tools.pp.model.pod.PODHeader;
-import com.gratex.tools.pp.model.pod.PODRecord;
-import com.gratex.tools.pp.model.ppe.PPEFile;
-import com.gratex.tools.pp.model.ppe.PPEFooter;
-import com.gratex.tools.pp.model.ppe.PPEHeader;
-import com.gratex.tools.pp.model.ppe.PPERecord;
+import com.gratex.tools.pp.io.pod.PODFile;
+import com.gratex.tools.pp.io.pod.PODFooter;
+import com.gratex.tools.pp.io.pod.PODHeader;
+import com.gratex.tools.pp.io.pod.PODRecord;
+import com.gratex.tools.pp.io.ppe.PPEFile;
+import com.gratex.tools.pp.io.ppe.PPEFooter;
+import com.gratex.tools.pp.io.ppe.PPEHeader;
+import com.gratex.tools.pp.io.ppe.PPERecord;
+import com.gratex.tools.pp.utils.DataGenerator;
 
 /**
  *
@@ -57,7 +57,7 @@ public final class PpeToPodConverter implements PPFileConverter<PPEFile, PODFile
 	private PODRecord convertRecord(PPERecord ppeRecord) {
 		PODRecord podRecord = new PODRecord();
 		podRecord.setCode(ppeRecord.getCode());
-		podRecord.setFileNumber(DummyDataGenerator.getRandomNumericString(5));
+		podRecord.setFileNumber(DataGenerator.getRandomNumericString(5));
 		podRecord.setRecipientCode(ppeRecord.getRecipientCode());
 		podRecord.setAmount(ppeRecord.getAmount());
 		podRecord.setPrice(ppeRecord.getPrice());

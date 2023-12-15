@@ -1,4 +1,4 @@
-package com.gratex.tools.pp.model.pod;
+package com.gratex.tools.pp.io.ppe;
 
 import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
@@ -6,40 +6,40 @@ import static java.util.Objects.nonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gratex.tools.pp.model.PPFile;
+import com.gratex.tools.pp.core.PPFile;
 
 /**
  *
  * @author mkrajcovicux
  */
-public final class PODFile extends PPFile {
+public final class PPEFile extends PPFile { // TODO: review hierarchy
 
-	private PODHeader header;
-	private List<PODRecord> body;
-	private PODFooter footer;
+	private PPEHeader header;
+	private List<PPERecord> body;
+	private PPEFooter footer;
 
-	public PODFile(PODHeader header, List<PODRecord> body, PODFooter footer) {
+	public PPEFile(PPEHeader header, List<PPERecord> body, PPEFooter footer) {
 		this.header = header;
 		this.body = body;
 		this.footer = footer;
 	}
 
-	public PODHeader getHeader() {
+	public PPEHeader getHeader() {
 		return header;
 	}
 
-	public List<PODRecord> getBody() {
+	public List<PPERecord> getBody() {
 		return nonNull(body) && !body.isEmpty() 
 				? new ArrayList<>(body)
 				: emptyList();
 	}
 
-	public PODFooter getFooter() {
+	public PPEFooter getFooter() {
 		return footer;
 	}
 
 	@Override
-	protected final String buildFileString() {
+	protected String buildFileString() {
 		StringBuilder fileContent = new StringBuilder();
 		appendHeader(fileContent);
 		appendBody(fileContent);
@@ -50,21 +50,33 @@ public final class PODFile extends PPFile {
 	private void appendHeader(StringBuilder fileContent) {
 		fileContent.append(header.getCode())
 				   .append(header.getIban1())
+				   .append(header.getIban2())
+				   .append(header.getFileCreated())
 				   .append(header.getSerialNumberIn12M())
-				   .append(header.getStampNumber())
-				   .append(header.getDayReceived())
-				   .append(header.getMonthReceived())
-				   .append(header.getYearRecieved())
+				   .append(header.getVoucherValidity())
+				   .append(header.getDiacriticsCode())
+				   .append(header.getTestLetterForDiacriticsCode())
+				   .append(header.getPayOutDate())
 				   .append(System.lineSeparator());
 	}
 
 	private void appendBody(StringBuilder content) {
-		for (PODRecord record : body) {
+		for (PPERecord record : body) {
 			content.append(record.getCode())
-				   .append(record.getFileNumber())
-				   .append(record.getRecipientCode())
+				   .append(record.getRecipientFullName())
+				   .append(record.getRecipientOtherIdentifier())
+				   .append(record.getStreet())
+				   .append(record.getBuildingNumber())
+				   .append(record.getMunicipality())
+				   .append(record.getPostalCode())
+				   .append(record.getAddressNote())
 				   .append(record.getAmount())
 				   .append(record.getPrice())
+				   .append(record.getServiceCode())
+				   .append(record.getRecipientCode())
+				   .append(record.getPurpose())
+				   .append(record.getEmail())
+				   .append(record.getTelephone())
 				   .append(System.lineSeparator());
 		}
 	}

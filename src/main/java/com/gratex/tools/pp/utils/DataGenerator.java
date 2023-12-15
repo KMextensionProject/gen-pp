@@ -1,9 +1,11 @@
-package com.gratex.tools.main;
+package com.gratex.tools.pp.utils;
+
+import static java.util.Objects.requireNonNull;
 
 import java.security.SecureRandom;
 import java.util.Random;
 
-public class DummyDataGenerator {
+public class DataGenerator {
 
 	private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	private static final Random NUMBER_GENERATOR = new SecureRandom();
@@ -34,7 +36,8 @@ public class DummyDataGenerator {
 		return result + getSpaces(totalSize - filledContentLength);
 	}
 
-	public static String appendSpacesToMatchSize(String startingText, int totalSize) {
+	public static String appendSpacesToEnsureSize(String startingText, int totalSize) {
+		requireNonNull(startingText, "startingText must not be null, but it may be empty");
 		if (startingText.length() > totalSize) {
 			throw new IllegalArgumentException("Starting text is longer than totalSize (" 
 					+ startingText.length() + "/" + totalSize + ")");

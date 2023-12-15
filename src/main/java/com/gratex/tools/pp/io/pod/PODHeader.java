@@ -1,6 +1,6 @@
-package com.gratex.tools.pp.model.pod;
+package com.gratex.tools.pp.io.pod;
 
-import com.gratex.tools.pp.model.PPHeader;
+import com.gratex.tools.pp.core.PPHeader;
 
 public class PODHeader extends PPHeader {
 

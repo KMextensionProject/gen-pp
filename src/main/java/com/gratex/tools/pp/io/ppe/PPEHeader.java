@@ -1,6 +1,6 @@
-package com.gratex.tools.pp.model.ppe;
+package com.gratex.tools.pp.io.ppe;
 
-import com.gratex.tools.pp.model.PPHeader;
+import com.gratex.tools.pp.core.PPHeader;
 
 public class PPEHeader extends PPHeader {
 

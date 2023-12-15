@@ -8,10 +8,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import com.gratex.tools.pp.model.ppe.PPEFile;
-import com.gratex.tools.pp.model.ppe.PPEFooter;
-import com.gratex.tools.pp.model.ppe.PPEHeader;
-import com.gratex.tools.pp.model.ppe.PPERecord;
+import com.gratex.tools.pp.io.ppe.PPEFile;
+import com.gratex.tools.pp.io.ppe.PPEFooter;
+import com.gratex.tools.pp.io.ppe.PPEHeader;
+import com.gratex.tools.pp.io.ppe.PPERecord;
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.gratex.tools.pp.model;
+package com.gratex.tools.pp.core;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

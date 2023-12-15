@@ -1,6 +1,6 @@
-package com.gratex.tools.pp.model.pod;
+package com.gratex.tools.pp.io.pod;
 
-import com.gratex.tools.pp.model.PPPart;
+import com.gratex.tools.pp.core.PPPart;
 
 public class PODRecord extends PPPart {
 

@@ -10,14 +10,14 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.gratex.tools.pp.model.pod.PODFile;
-import com.gratex.tools.pp.model.pod.PODFooter;
-import com.gratex.tools.pp.model.pod.PODHeader;
-import com.gratex.tools.pp.model.pod.PODRecord;
-import com.gratex.tools.pp.model.ppe.PPEFile;
-import com.gratex.tools.pp.model.ppe.PPEFooter;
-import com.gratex.tools.pp.model.ppe.PPEHeader;
-import com.gratex.tools.pp.model.ppe.PPERecord;
+import com.gratex.tools.pp.io.pod.PODFile;
+import com.gratex.tools.pp.io.pod.PODFooter;
+import com.gratex.tools.pp.io.pod.PODHeader;
+import com.gratex.tools.pp.io.pod.PODRecord;
+import com.gratex.tools.pp.io.ppe.PPEFile;
+import com.gratex.tools.pp.io.ppe.PPEFooter;
+import com.gratex.tools.pp.io.ppe.PPEHeader;
+import com.gratex.tools.pp.io.ppe.PPERecord;
 
 class PpeToPodConverterTest {
 

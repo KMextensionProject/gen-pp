@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 
-import com.gratex.tools.pp.model.PPFile;
-
 /**
  *
  * @author mkrajcovicux

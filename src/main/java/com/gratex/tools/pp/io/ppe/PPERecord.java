@@ -1,20 +1,23 @@
-package com.gratex.tools.pp.model.vrt;
+package com.gratex.tools.pp.io.ppe;
 
-import com.gratex.tools.pp.model.PPPart;
+import com.gratex.tools.pp.core.PPPart;
 
-public class VRTRecord extends PPPart {
+public class PPERecord extends PPPart {
 
 	private String recipientFullName; // 30
 	private String recipientOtherIdentifier; // 30
 	private String street; // 28
 	private String buildingNumber; // 10
 	private String municipality; // 30
-	private String postOfficePostalCode; // 5
+	private String postalCode; // 5
 	private String addressNote; // 30
+	private String amount; // 10 (including delimiter) (7777777.22)
+	private String price; // 7 (including delimiter) (666666.22)
+	private String serviceCode; // 3
 	private String recipientCode; // 30
-	private String amount; // 10
-	private String fileNumber; // 5
-	private String reasonUnpaid; // 21
+	private String purpose; // 30
+	private String email; // 50
+	private String telephone; // 20
 
 	public String getRecipientFullName() {
 		return recipientFullName;
@@ -56,12 +59,12 @@ public class VRTRecord extends PPPart {
 		this.municipality = municipality;
 	}
 
-	public String getPostOfficePostalCode() {
-		return postOfficePostalCode;
+	public String getPostalCode() {
+		return postalCode;
 	}
 
-	public void setPostOfficePostalCode(String postOfficePostalCode) {
-		this.postOfficePostalCode = postOfficePostalCode;
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
 
 	public String getAddressNote() {
@@ -72,14 +75,6 @@ public class VRTRecord extends PPPart {
 		this.addressNote = addressNote;
 	}
 
-	public String getRecipientCode() {
-		return recipientCode;
-	}
-
-	public void setRecipientCode(String recipientCode) {
-		this.recipientCode = recipientCode;
-	}
-
 	public String getAmount() {
 		return amount;
 	}
@@ -88,20 +83,52 @@ public class VRTRecord extends PPPart {
 		this.amount = amount;
 	}
 
-	public String getFileNumber() {
-		return fileNumber;
+	public String getPrice() {
+		return price;
 	}
 
-	public void setFileNumber(String fileNumber) {
-		this.fileNumber = fileNumber;
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
-	public String getReasonUnpaid() {
-		return reasonUnpaid;
+	public String getServiceCode() {
+		return serviceCode;
 	}
 
-	public void setReasonUnpaid(String reasonUnpaid) {
-		this.reasonUnpaid = reasonUnpaid;
+	public void setServiceCode(String serviceCode) {
+		this.serviceCode = serviceCode;
+	}
+
+	public String getRecipientCode() {
+		return recipientCode;
+	}
+
+	public void setRecipientCode(String recipientCode) {
+		this.recipientCode = recipientCode;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
 }

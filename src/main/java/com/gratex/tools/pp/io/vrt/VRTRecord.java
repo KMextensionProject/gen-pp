@@ -1,23 +1,20 @@
-package com.gratex.tools.pp.model.ppe;
+package com.gratex.tools.pp.io.vrt;
 
-import com.gratex.tools.pp.model.PPPart;
+import com.gratex.tools.pp.core.PPPart;
 
-public class PPERecord extends PPPart {
+public class VRTRecord extends PPPart {
 
 	private String recipientFullName; // 30
 	private String recipientOtherIdentifier; // 30
 	private String street; // 28
 	private String buildingNumber; // 10
 	private String municipality; // 30
-	private String postalCode; // 5
+	private String postOfficePostalCode; // 5
 	private String addressNote; // 30
-	private String amount; // 10 (including delimiter) (7777777.22)
-	private String price; // 7 (including delimiter) (666666.22)
-	private String serviceCode; // 3
 	private String recipientCode; // 30
-	private String purpose; // 30
-	private String email; // 50
-	private String telephone; // 20
+	private String amount; // 10
+	private String fileNumber; // 5
+	private String reasonUnpaid; // 21
 
 	public String getRecipientFullName() {
 		return recipientFullName;
@@ -59,12 +56,12 @@ public class PPERecord extends PPPart {
 		this.municipality = municipality;
 	}
 
-	public String getPostalCode() {
-		return postalCode;
+	public String getPostOfficePostalCode() {
+		return postOfficePostalCode;
 	}
 
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
+	public void setPostOfficePostalCode(String postOfficePostalCode) {
+		this.postOfficePostalCode = postOfficePostalCode;
 	}
 
 	public String getAddressNote() {
@@ -75,30 +72,6 @@ public class PPERecord extends PPPart {
 		this.addressNote = addressNote;
 	}
 
-	public String getAmount() {
-		return amount;
-	}
-
-	public void setAmount(String amount) {
-		this.amount = amount;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getServiceCode() {
-		return serviceCode;
-	}
-
-	public void setServiceCode(String serviceCode) {
-		this.serviceCode = serviceCode;
-	}
-
 	public String getRecipientCode() {
 		return recipientCode;
 	}
@@ -107,28 +80,28 @@ public class PPERecord extends PPPart {
 		this.recipientCode = recipientCode;
 	}
 
-	public String getPurpose() {
-		return purpose;
+	public String getAmount() {
+		return amount;
 	}
 
-	public void setPurpose(String purpose) {
-		this.purpose = purpose;
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getFileNumber() {
+		return fileNumber;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setFileNumber(String fileNumber) {
+		this.fileNumber = fileNumber;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public String getReasonUnpaid() {
+		return reasonUnpaid;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setReasonUnpaid(String reasonUnpaid) {
+		this.reasonUnpaid = reasonUnpaid;
 	}
 
 }

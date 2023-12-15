@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
-import com.gratex.tools.pp.model.ppe.PPEFile;
-import com.gratex.tools.pp.model.ppe.PPEFooter;
-import com.gratex.tools.pp.model.ppe.PPEHeader;
-import com.gratex.tools.pp.model.ppe.PPERecord;
-import com.gratex.tools.pp.model.vrt.VRTFile;
-import com.gratex.tools.pp.model.vrt.VRTFooter;
-import com.gratex.tools.pp.model.vrt.VRTHeader;
-import com.gratex.tools.pp.model.vrt.VRTRecord;
+import com.gratex.tools.pp.io.ppe.PPEFile;
+import com.gratex.tools.pp.io.ppe.PPEFooter;
+import com.gratex.tools.pp.io.ppe.PPEHeader;
+import com.gratex.tools.pp.io.ppe.PPERecord;
+import com.gratex.tools.pp.io.vrt.VRTFile;
+import com.gratex.tools.pp.io.vrt.VRTFooter;
+import com.gratex.tools.pp.io.vrt.VRTHeader;
+import com.gratex.tools.pp.io.vrt.VRTRecord;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class PpeToVrtConverterTest {

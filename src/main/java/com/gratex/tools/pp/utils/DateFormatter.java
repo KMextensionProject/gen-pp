@@ -1,10 +1,10 @@
-package com.gratex.tools.main;
+package com.gratex.tools.pp.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class PPFormatUtil {
+public class DateFormatter {
 
 	public static final DateTimeFormatter PP_DATE_FORMAT = DateTimeFormatter.ofPattern("ddMMyyyy");
 	public static final DateTimeFormatter SLOVAK_DATE_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
