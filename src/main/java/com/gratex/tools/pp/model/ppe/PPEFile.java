@@ -3,11 +3,6 @@ package com.gratex.tools.pp.model.ppe;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +12,7 @@ import com.gratex.tools.pp.model.PPFile;
  *
  * @author mkrajcovicux
  */
-public final class PPEFile extends PPFile { // TODO: review hierarchy + change usage of PpeParser ?
+public final class PPEFile extends PPFile { // TODO: review hierarchy
 
 	private PPEHeader header;
 	private List<PPERecord> body;
@@ -43,19 +38,8 @@ public final class PPEFile extends PPFile { // TODO: review hierarchy + change u
 		return footer;
 	}
 
-	/**
-	 *
-	 * @param targetFile
-	 * @throws IOException
-	 */
-	public void write(Path targetFile) throws IOException {
-		try (BufferedWriter writer = Files.newBufferedWriter(targetFile, Charset.forName("Cp1250"))) {
-			writer.write(buildFileString());
-			// log
-		}
-	}
-
-	private String buildFileString() {
+	@Override
+	protected String buildFileString() {
 		StringBuilder fileContent = new StringBuilder();
 		appendHeader(fileContent);
 		appendBody(fileContent);

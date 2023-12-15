@@ -75,7 +75,7 @@ class PpeToVrtConverterTest {
 		assertEquals(05, vrtHeader.getPostOfficePostalCode().length());
 		assertEquals(35, vrtHeader.getE2EReference().length());
 		assertEquals(06, vrtHeader.getReceivedVoucherCount().length());
-		assertEquals(04, vrtHeader.getRecipientCode().length());
+		assertEquals(04, vrtHeader.getSenderCode().length());
 		assertEquals(13, vrtHeader.getReturnedPrice().length());
 		assertEquals(28, vrtHeader.getSender().length());
 		assertEquals(06, vrtHeader.getStampNumber().length());
@@ -96,8 +96,8 @@ class PpeToVrtConverterTest {
 		}
 
 		VRTFooter vrtFooter = vrtFile.getFooter();
-		assertEquals(06, vrtFooter.getDataSentencesAmount().length());
-		assertEquals(13, vrtFooter.getDataSentencesPrice().length());
+		assertEquals(06, vrtFooter.getDataSentencesCount().length());
+		assertEquals(13, vrtFooter.getDataSentencesAmount().length());
 	}
 
 }

@@ -31,6 +31,10 @@ public class PPFormatUtil {
 		return LocalDate.parse(slovakDateString, SLOVAK_DATE_FORMAT);
 	}
 
+	public static String toSlovakDateFormatString(LocalDate date) {
+		return SLOVAK_DATE_FORMAT.format(date);
+	}
+
 	/**
 	 * @param number
 	 * @return

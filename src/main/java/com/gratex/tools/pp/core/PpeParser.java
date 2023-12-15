@@ -17,7 +17,7 @@ import com.gratex.tools.pp.model.ppe.PPERecord;
  *
  * @author mkrajcovicux
  */
-public class PpeParser {
+public class PpeParser implements FileParser<PPEFile> {
 
 	/**
 	 * TODO: leave only this method with public modifier, others must be package private, but test cases must be moved under this package
@@ -25,8 +25,9 @@ public class PpeParser {
 	 * @return
 	 * @throws IOException
 	 */
-	public PPEFile parse(Path source) throws IOException {
-		List<String> lines = Files.readAllLines(source, Charset.forName("Cp1250"));
+	@Override
+	public PPEFile parse(Path source, Charset encoding) throws IOException {
+		List<String> lines = Files.readAllLines(source, encoding);
 		PPEHeader header = parseHeader(lines.remove(0));
 		PPEFooter footer = parseFooter(lines.remove(lines.size() - 1));
 		List<PPERecord> body = parseBody(lines);

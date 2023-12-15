@@ -3,8 +3,6 @@ package com.gratex.tools.pp.model.vrt;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +25,9 @@ public class VRTFile extends PPFile {
 	}
 
 	public List<VRTRecord> getBody() {
-		return nonNull(body) && !body.isEmpty() ? new ArrayList<>(body) : emptyList();
+		return nonNull(body) && !body.isEmpty() 
+			? new ArrayList<>(body) 
+			: emptyList();
 	}
 
 	public VRTFooter getFooter() {
@@ -35,8 +35,62 @@ public class VRTFile extends PPFile {
 	}
 
 	@Override
-	public void write(Path targetFile) throws IOException {
-		// TODO Auto-generated method stub
-		
+	protected final String buildFileString() {
+		StringBuilder fileContent = new StringBuilder();
+		appendHeader(fileContent);
+		appendBody(fileContent);
+		appendFooter(fileContent);
+		return fileContent.toString();
 	}
+
+	private void appendHeader(StringBuilder fileContent) {
+		fileContent.append(header.getCode())
+				   .append(header.getSenderCode())
+				   .append(header.getIban())
+				   .append(header.getSender())
+				   .append(header.getStreet())
+				   .append(header.getBuildingNumber())
+				   .append(header.getMunicipality())
+				   .append(header.getPostOfficePostalCode())
+				   .append(header.getSerialNumberIn12M())
+				   .append(header.getStampNumber())
+				   .append(header.getDateReceived())
+				   .append(header.getReceivedVoucherCount())
+				   .append(header.getTotalAmountRemitted())
+				   .append(header.getTotalPriceRemitted())
+				   .append(header.getVoucherReceiveDate())
+				   .append(header.getVoucherValidityDate())
+				   .append(header.getVoucherIssueDate())
+				   .append(header.getUnpaidAmountAttributionDate())
+				   .append(header.getUnpaidVouchersCount())
+				   .append(header.getReturnedPrice())
+				   .append(header.getE2EReference())
+				   .append(System.lineSeparator());
+	}
+
+	private void appendBody(StringBuilder content) {
+		for (VRTRecord record : body) {
+			content.append(record.getCode())
+				   .append(record.getRecipientFullName())
+				   .append(record.getRecipientOtherIdentifier())
+				   .append(record.getStreet())
+				   .append(record.getBuildingNumber())
+				   .append(record.getMunicipality())
+				   .append(record.getPostOfficePostalCode())
+				   .append(record.getAddressNote())
+				   .append(record.getRecipientCode())
+				   .append(record.getAmount())
+				   .append(record.getFileNumber())
+				   .append(record.getReasonUnpaid())
+				   .append(System.lineSeparator());
+		}
+	}
+
+	private void appendFooter(StringBuilder fileContent) {
+		fileContent.append(footer.getCode())
+				   .append(footer.getDataSentencesCount())
+				   .append(footer.getDataSentencesAmount());
+	}
+
+//	michal.ilecko19@gmail.com
 }

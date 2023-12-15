@@ -4,7 +4,7 @@ import com.gratex.tools.pp.model.PPHeader;
 
 public class VRTHeader extends PPHeader {
 
-	private String recipientCode; // 4
+	private String senderCode; // 4
 	private String iban; // 34
 	private String sender; // 28
 	private String street; // 20
@@ -12,7 +12,7 @@ public class VRTHeader extends PPHeader {
 	private String municipality; // 20
 	private String postOfficePostalCode; // 5
 	private String stampNumber; // 6
-	private String dateReceived; // 8 (ddmmrrrr)
+	private String dateReceived; // 10 (dd.mm.rrrr)
 	private String receivedVoucherCount; // 6
 	private String totalAmountRemitted; // 13
 	private String totalPriceRemitted; // 10
@@ -22,15 +22,14 @@ public class VRTHeader extends PPHeader {
 	private String unpaidAmountAttributionDate; // 10 (dd.mm.rrrr)
 	private String unpaidVouchersCount; // 6
 	private String returnedPrice; // 13 (xxxxxxxxxx.xx)
-	private String E2EReference; // 35 -> there is an enumeration of permitted
-									// values
+	private String E2EReference; // 35 -> there is an enumeration of permitted values
 
-	public String getRecipientCode() {
-		return recipientCode;
+	public String getSenderCode() {
+		return senderCode;
 	}
 
-	public void setRecipientCode(String recipientCode) {
-		this.recipientCode = recipientCode;
+	public void setSenderCode(String senderCode) {
+		this.senderCode = senderCode;
 	}
 
 	public String getIban() {

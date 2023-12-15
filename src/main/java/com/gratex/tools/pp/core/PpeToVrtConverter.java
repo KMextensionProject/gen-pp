@@ -1,9 +1,12 @@
 package com.gratex.tools.pp.core;
 
-import static com.gratex.tools.main.DummyDataGenerator.getRandomNumericString;
 import static com.gratex.tools.main.DummyDataGenerator.appendSpacesToMatchSize;
+import static com.gratex.tools.main.DummyDataGenerator.getRandomNumericString;
+import static com.gratex.tools.main.PPFormatUtil.toSlovakDateFormatString;
+import static com.gratex.tools.main.PPFormatUtil.fromDDMMYYYY;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +38,9 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		vrtHeader.setCode(ppeHeader.getCode());
 		vrtHeader.setSerialNumberIn12M(ppeHeader.getSerialNumberIn12M());
 		vrtHeader.setIban(ppeHeader.getIban1());
-		vrtHeader.setDateReceived(ppeHeader.getFileCreated());
+
+		LocalDate ppeReceived = fromDDMMYYYY(ppeHeader.getFileCreated());
+		vrtHeader.setDateReceived(toSlovakDateFormatString(ppeReceived));
 
 		// these fields must be generated
 		vrtHeader.setBuildingNumber(appendSpacesToMatchSize("17/C", 7));
@@ -43,7 +48,7 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		vrtHeader.setPostOfficePostalCode("82104");
 		vrtHeader.setE2EReference(appendSpacesToMatchSize("test referencie", 35));
 		vrtHeader.setReceivedVoucherCount("123456");
-		vrtHeader.setRecipientCode("1234");
+		vrtHeader.setSenderCode("1234");
 		vrtHeader.setReturnedPrice(getRandomNumericString(10) + ".99");
 		vrtHeader.setSender(appendSpacesToMatchSize("Martin", 28));
 		vrtHeader.setStampNumber("ABC123");
@@ -89,8 +94,8 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		vrtFooter.setCode(ppeFooter.getCode());
 
 		// these two fields must be generated, because they cannot be mapped
-		vrtFooter.setDataSentencesAmount(getRandomNumericString(6));
-		vrtFooter.setDataSentencesPrice(getRandomNumericString(10) + ".99");
+		vrtFooter.setDataSentencesCount(getRandomNumericString(6));
+		vrtFooter.setDataSentencesAmount(getRandomNumericString(10) + ".99");
 		return vrtFooter;
 	}
 }

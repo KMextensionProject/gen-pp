@@ -1,16 +1,37 @@
 package com.gratex.tools.pp.model;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
-// Factory?
 public abstract class PPFile {
+	// not all PPFiles have header, body, footer
 
 	/**
-	 * => used encoding is Cp1250 .. should be possible to define clients own????
+	 * Default encoding is Cp1250
 	 * @param targetFile
 	 * @throws IOException
 	 */
-	public abstract void write(Path targetFile) throws IOException;
+	public void write(Path targetFile) throws IOException {
+		write(targetFile, Charset.forName("Cp1250"));
+	}
+
+	/**
+	 * @param targetFile
+	 * @throws IOException
+	 */
+	public void write(Path targetFile, Charset encoding) throws IOException {
+		try (BufferedWriter writer = Files.newBufferedWriter(targetFile, encoding)) {
+			writer.write(buildFileString());
+		}
+	}
+
+	/**
+	 *
+	 * @return
+	 */
+	protected abstract String buildFileString();
 
 }
