@@ -37,6 +37,7 @@ public class FormattingUtility {
 	}
 
 	public static String toSlovakDateFormatString(LocalDate date) {
+		requireNonNull(date, "Input can not be null");
 		return SLOVAK_DATE_FORMAT.format(date);
 	}
 
@@ -45,6 +46,12 @@ public class FormattingUtility {
 	 * @return
 	 */
 	public static String formatNumber(int number, int scale) {
+		if (scale == 0) {
+			throw new IllegalArgumentException("scale must be > 0");
+		}
+		if (("" + number).replace("-", "").length() > scale) {
+			throw new IllegalArgumentException("scale must be >= number digits length");
+		}
 		String formatterMark = "%0" + scale + "d";
 		return String.format(formatterMark, number);
 	}
