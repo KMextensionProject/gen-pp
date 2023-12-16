@@ -10,6 +10,10 @@ public class DataGenerator {
 	private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	private static final Random NUMBER_GENERATOR = new SecureRandom();
 
+	private DataGenerator() {
+		throw new IllegalStateException("DataGenerator was not designed to be instantiated");
+	}
+
 	public static String getRandomNumericString(int length) {
 		if (length < 1) {
 			throw new IllegalArgumentException("length " + length + " is not valid, try 0-" + Integer.MAX_VALUE);

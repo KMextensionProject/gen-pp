@@ -11,6 +11,10 @@ public class DateFormatter {
 
 	public static final int DAY_MONTH_FORMAT_SCALE = 2;
 
+	private DateFormatter() {
+		throw new IllegalStateException("DateFormatter was not designed to be instantiated");
+	}
+
 	/**
 	 *
 	 * @param ddmmyyyy

@@ -4,6 +4,10 @@ import static com.gratex.tools.pp.utils.DataGenerator.appendSpacesToEnsureSize;
 
 public class EnumReasonUnpaid {
 
+	private EnumReasonUnpaid() {
+		throw new IllegalStateException("EnumReasonPaid was not designed to be instantiated");
+	}
+
 	public static final String RECIPIENT_DIED = appendSpacesToEnsureSize("adresát zomrel", 21);
 	public static final String RECIPIENT_MOVED_OUT = appendSpacesToEnsureSize("adresát odsťahovaný", 21);
 	public static final String RECIPIENT_UNKNOWN = appendSpacesToEnsureSize("adresát neznámy", 21);
