@@ -1,13 +1,15 @@
 package com.gratex.tools.pp.core;
 
+import static com.gratex.tools.pp.core.FileType.PPE;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
 
-import com.gratex.tools.pp.io.pod.PODFile;
 import com.gratex.tools.pp.io.ppe.PPEFile;
-import com.gratex.tools.pp.io.vrt.VRTFile;
 
 /**
  *
@@ -15,38 +17,67 @@ import com.gratex.tools.pp.io.vrt.VRTFile;
  */
 public class GenPPStarter {
 
+	private static final Logger LOGGER;
+	static {
+		System.setProperty("java.util.logging.SimpleFormatter.format", "[%4$s] %5$s%n");
+		LOGGER = Logger.getLogger("GenPPStarter");
+	}
+
 	public static void main(String[] args) throws Exception {
-		Path target = Paths.get(System.getProperty("user.dir"));
-		if (args.length == 0) {
-			System.out.println("[ERROR] expected mandatory .ppe file location");
-			return;
-		} else if (args.length == 2) {
-			target = Paths.get(args[1]);
-			if (!target.toFile().isDirectory()) {
-				System.out.println("[ERROR] " + target + " is not a directory");
-				return;
-			}
-		}
-		Path source = Paths.get(args[0]);
-		if (!FileType.PPE.isExtensionOn(source)) {
-			System.out.println("[ERROR] source file must have .ppe extension");
-			return;
-		}
+		Path source = parseSourceLocation(args);
+		Path target = parseTargetLocation(args);
 		try {
 			PPEFile ppeFile = new PpeParser().parse(source);
-			PODFile podFile = new PpeToPodConverter().convert(ppeFile);
-			VRTFile vrtFile = new PpeToVrtConverter().convert(ppeFile);
-
-			podFile.write(Paths.get("/home/UX/mkrajcovicux/Desktop/podFileTest.pod"));
-			System.out.println("[INFO] .pod file created: " + target);
-
-			vrtFile.write(Paths.get("/home/UX/mkrajcovicux/Desktop/vrtFileTest.vrt"));
-			System.out.println();
+			writeFile(new PpeToPodConverter().convert(ppeFile), target);
+			writeFile(new PpeToVrtConverter().convert(ppeFile), target);
 
 		} catch (NoSuchFileException nsf) {
-			System.out.println("[ERROR] No such file: " + nsf.getFile());
+			LOGGER.severe("No such file: " + nsf.getFile());
 		} catch (IOException ioex) {
-			System.out.println("[ERROR] Something went wrong " + ioex.getMessage());
+			LOGGER.severe("Bad things happen... " + ioex.getMessage());
 		}
+	}
+
+	private static Path parseSourceLocation(String[] args) {
+		if (args.length == 0) {
+			LOGGER.severe(".ppe file location is a mandatory program argument");
+			System.exit(1);
+		}
+		Path source = Paths.get(args[0]);
+		if (!PPE.isExtensionOn(source)) {
+			LOGGER.severe("source file must have .ppe extension");
+			System.exit(1);
+		}
+		return source;
+	}
+
+	// we inherit the source file name here
+	private static Path parseTargetLocation(String[] args) {
+		String sourceFileName = getFileNameWithoutExtension(args[0]);
+		if (args.length == 2) {
+			Path target = Paths.get(args[1]);
+			if (!target.toFile().isDirectory()) {
+				LOGGER.severe(() -> target + " is not a directory");
+				System.exit(1);
+			}
+			return Paths.get(target.toString(), sourceFileName);
+		} else {
+			return Paths.get(System.getProperty("user.dir"), sourceFileName);
+		}
+	}
+
+	private static String getFileNameWithoutExtension(String filePath) {
+		String fileName = new File(filePath).getName();
+		int index = fileName.indexOf('.');
+		return (index >= 0)
+			? fileName.substring(0, index)
+			: fileName;
+	}
+
+	private static void writeFile(PPFile file, Path target) throws IOException {
+		String fileExtension = file.getFileType().getFileExtension();
+		Path targetFile = Paths.get(target + fileExtension);
+		file.write(targetFile);
+		LOGGER.info(() -> fileExtension + " file created: " + targetFile);
 	}
 }

@@ -29,6 +29,11 @@ public abstract class PPFile {
 	}
 
 	/**
+	 * @return Type of this file represented by {@link FileType}
+	 */
+	public abstract FileType getFileType();
+
+	/**
 	 *
 	 * @return
 	 */

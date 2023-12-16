@@ -1,11 +1,13 @@
 package com.gratex.tools.pp.io.ppe;
 
+import static com.gratex.tools.pp.core.FileType.PPE;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gratex.tools.pp.core.FileType;
 import com.gratex.tools.pp.core.PPFile;
 
 /**
@@ -36,6 +38,11 @@ public final class PPEFile extends PPFile { // TODO: review hierarchy
 
 	public PPEFooter getFooter() {
 		return footer;
+	}
+
+	@Override
+	public FileType getFileType() {
+		return PPE;
 	}
 
 	@Override

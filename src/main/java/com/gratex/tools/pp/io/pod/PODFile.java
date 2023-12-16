@@ -1,11 +1,13 @@
 package com.gratex.tools.pp.io.pod;
 
+import static com.gratex.tools.pp.core.FileType.POD;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gratex.tools.pp.core.FileType;
 import com.gratex.tools.pp.core.PPFile;
 
 /**
@@ -36,6 +38,11 @@ public final class PODFile extends PPFile {
 
 	public PODFooter getFooter() {
 		return footer;
+	}
+
+	@Override
+	public FileType getFileType() {
+		return POD;
 	}
 
 	@Override

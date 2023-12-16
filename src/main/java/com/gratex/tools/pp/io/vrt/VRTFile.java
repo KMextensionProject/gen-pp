@@ -1,11 +1,13 @@
 package com.gratex.tools.pp.io.vrt;
 
+import static com.gratex.tools.pp.core.FileType.VRT;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gratex.tools.pp.core.FileType;
 import com.gratex.tools.pp.core.PPFile;
 
 public class VRTFile extends PPFile {
@@ -32,6 +34,11 @@ public class VRTFile extends PPFile {
 
 	public VRTFooter getFooter() {
 		return footer;
+	}
+
+	@Override
+	public FileType getFileType() {
+		return VRT;
 	}
 
 	@Override
