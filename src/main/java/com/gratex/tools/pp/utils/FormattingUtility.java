@@ -22,7 +22,7 @@ public class FormattingUtility {
 	 * @return
 	 */
 	public static LocalDate fromDDMMYYYY(String ddmmyyyy) {
-		requireNonNull(ddmmyyyy, "Input can not be null");
+		requireNonNull(ddmmyyyy, "ddmmyyyy can not be null");
 		return LocalDate.parse(ddmmyyyy, PP_DATE_FORMAT);
 	}
 
@@ -32,12 +32,12 @@ public class FormattingUtility {
 	 * @return
 	 */
 	public static LocalDate fromSlovakDateFormat(String slovakDateString) {
-		requireNonNull(slovakDateString, "Input can not be null");
+		requireNonNull(slovakDateString, "slovakDateString can not be null");
 		return LocalDate.parse(slovakDateString, SLOVAK_DATE_FORMAT);
 	}
 
 	public static String toSlovakDateFormatString(LocalDate date) {
-		requireNonNull(date, "Input can not be null");
+		requireNonNull(date, "date can not be null");
 		return SLOVAK_DATE_FORMAT.format(date);
 	}
 

@@ -14,7 +14,7 @@ import com.gratex.tools.pp.core.PPFile;
  *
  * @author mkrajcovicux
  */
-public final class PPEFile extends PPFile { // TODO: review hierarchy
+public final class PPEFile extends PPFile {
 
 	private PPEHeader header;
 	private List<PPERecord> body;
