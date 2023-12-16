@@ -1,17 +1,18 @@
 package com.gratex.tools.pp.utils;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
-public class DateFormatter {
+public class FormattingUtility {
 
 	public static final DateTimeFormatter PP_DATE_FORMAT = DateTimeFormatter.ofPattern("ddMMyyyy");
 	public static final DateTimeFormatter SLOVAK_DATE_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 	public static final int DAY_MONTH_FORMAT_SCALE = 2;
 
-	private DateFormatter() {
+	private FormattingUtility() {
 		throw new IllegalStateException("DateFormatter was not designed to be instantiated");
 	}
 
@@ -21,7 +22,7 @@ public class DateFormatter {
 	 * @return
 	 */
 	public static LocalDate fromDDMMYYYY(String ddmmyyyy) {
-		Objects.requireNonNull(ddmmyyyy, "Input can not be null");
+		requireNonNull(ddmmyyyy, "Input can not be null");
 		return LocalDate.parse(ddmmyyyy, PP_DATE_FORMAT);
 	}
 
@@ -31,7 +32,7 @@ public class DateFormatter {
 	 * @return
 	 */
 	public static LocalDate fromSlovakDateFormat(String slovakDateString) {
-		Objects.requireNonNull(slovakDateString, "Input can not be null");
+		requireNonNull(slovakDateString, "Input can not be null");
 		return LocalDate.parse(slovakDateString, SLOVAK_DATE_FORMAT);
 	}
 
@@ -44,7 +45,8 @@ public class DateFormatter {
 	 * @return
 	 */
 	public static String formatNumber(int number, int scale) {
-		return String.format("%0" + scale + "d", number);
+		String formatterMark = "%0" + scale + "d";
+		return String.format(formatterMark, number);
 	}
 
 }

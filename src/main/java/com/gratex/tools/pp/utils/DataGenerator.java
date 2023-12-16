@@ -1,5 +1,6 @@
 package com.gratex.tools.pp.utils;
 
+import static com.gratex.tools.pp.utils.FormattingUtility.formatNumber;
 import static java.util.Objects.requireNonNull;
 
 import java.security.SecureRandom;
@@ -22,7 +23,7 @@ public class DataGenerator {
 			return "" + NUMBER_GENERATOR.nextInt(9);
 		}
 	    int number = NUMBER_GENERATOR.nextInt(99);
-	    return String.format("%0" + length + "d", number);
+	    return formatNumber(number, length);
 	}
 
 	public static String getRandomString(int filledContentLength, int totalSize) {

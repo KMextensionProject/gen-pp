@@ -2,13 +2,13 @@ package com.gratex.tools.pp.core;
 
 import static com.gratex.tools.pp.utils.DataGenerator.appendSpacesToEnsureSize;
 import static com.gratex.tools.pp.utils.DataGenerator.getRandomNumericString;
-import static com.gratex.tools.pp.utils.DateFormatter.fromDDMMYYYY;
-import static com.gratex.tools.pp.utils.DateFormatter.toSlovakDateFormatString;
+import static com.gratex.tools.pp.utils.FormattingUtility.fromDDMMYYYY;
+import static com.gratex.tools.pp.utils.FormattingUtility.toSlovakDateFormatString;
+import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.gratex.tools.pp.io.ppe.PPEFile;
 import com.gratex.tools.pp.io.ppe.PPEFooter;
@@ -68,7 +68,7 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 	private List<VRTRecord> convertBody(List<PPERecord> ppeBody) {
 		return ppeBody.stream()
 			.map(this::convertRecord)
-			.collect(Collectors.toList());
+			.collect(toList());
 	}
 
 	private VRTRecord convertRecord(PPERecord ppeRecord) {

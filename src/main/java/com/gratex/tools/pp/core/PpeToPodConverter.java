@@ -1,9 +1,9 @@
 package com.gratex.tools.pp.core;
 
 import static com.gratex.tools.pp.utils.DataGenerator.getRandomNumericString;
-import static com.gratex.tools.pp.utils.DateFormatter.DAY_MONTH_FORMAT_SCALE;
-import static com.gratex.tools.pp.utils.DateFormatter.formatNumber;
-import static com.gratex.tools.pp.utils.DateFormatter.fromDDMMYYYY;
+import static com.gratex.tools.pp.utils.FormattingUtility.DAY_MONTH_FORMAT_SCALE;
+import static com.gratex.tools.pp.utils.FormattingUtility.formatNumber;
+import static com.gratex.tools.pp.utils.FormattingUtility.fromDDMMYYYY;
 import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;

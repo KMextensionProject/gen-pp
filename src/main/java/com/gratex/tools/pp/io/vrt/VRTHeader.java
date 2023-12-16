@@ -22,7 +22,7 @@ public class VRTHeader extends PPHeader {
 	private String unpaidAmountAttributionDate; // 10 (dd.mm.rrrr)
 	private String unpaidVouchersCount; // 6
 	private String returnedPrice; // 13 (xxxxxxxxxx.xx)
-	private String E2EReference; // 35 -> there is an enumeration of permitted values
+	private String e2eReference; // 35
 
 	public String getSenderCode() {
 		return senderCode;
@@ -169,11 +169,11 @@ public class VRTHeader extends PPHeader {
 	}
 
 	public String getE2EReference() {
-		return E2EReference;
+		return e2eReference;
 	}
 
 	public void setE2EReference(String e2eReference) {
-		E2EReference = e2eReference;
+		this.e2eReference = e2eReference;
 	}
 
 }
