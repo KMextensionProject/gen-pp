@@ -91,6 +91,4 @@ public class VRTFile extends PPFile {
 				   .append(footer.getDataSentencesCount())
 				   .append(footer.getDataSentencesAmount());
 	}
-
-//	michal.ilecko19@gmail.com
 }

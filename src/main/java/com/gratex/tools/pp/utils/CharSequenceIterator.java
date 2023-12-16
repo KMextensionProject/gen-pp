@@ -44,14 +44,6 @@ public class CharSequenceIterator {
 
 	/**
 	 *
-	 * @return
-	 */
-//	public boolean canRead(int length) {
-//		
-//	}
-
-	/**
-	 *
 	 */
 	public void resetSequencer() {
 		start = 0;
