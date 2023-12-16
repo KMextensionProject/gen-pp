@@ -1,6 +1,8 @@
-gen-pp: fa26ab4b8433e8e587f147343e1836eec99859db
+gen-pp: fa26ab4b8433e8e587f147343e1836eec99859db (local>admin:admin123)
 
 mvn sonar:sonar \
   -Dsonar.projectKey=gen-pp \
   -Dsonar.host.url=http://localhost:9000 \
   -Dsonar.login=fa26ab4b8433e8e587f147343e1836eec99859db
+
+# or use explicit -Dsonar.login and -Dsonar.password

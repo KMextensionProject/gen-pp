@@ -58,7 +58,7 @@ class PpeParserTest {
 	}
 
 	@Test
-	void footerTest() {
+	void footerTest() { // NOSONAR
 		List<String> lines = Arrays.asList(
 				"2Djemaili Nagian                                             Dolné Lovčice               510       Dolné Lovčice                 91927                              0000110.800001.80001263074C0     AABQGO0                                                                                                                                            ",
 				"2Volek Emil                                                  Ulica Andreja Kubinu        3199/12   Trnava                        91701                              0000389.400002.20001210664C0     AABQGO1                                                                                                                                            "
