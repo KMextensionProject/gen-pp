@@ -57,6 +57,39 @@ public class PpeParser implements FileParser<PPEFile> {
 
 	/**
 	 *
+	 * @param lines
+	 * @return
+	 */
+	List<PPERecord> parseBody(List<String> lines) {
+		return lines.stream()
+			.map(this::parseRecord)
+			.collect(toList());
+	}
+
+	private PPERecord parseRecord(String line) {
+		CharSequenceIterator sequencer = new CharSequenceIterator(line);
+
+		PPERecord bodyLine = new PPERecord();
+		bodyLine.setCode(sequencer.next(1));
+		bodyLine.setRecipientFullName(sequencer.next(30));
+		bodyLine.setRecipientOtherIdentifier(sequencer.next(30));
+		bodyLine.setStreet(sequencer.next(28));
+		bodyLine.setBuildingNumber(sequencer.next(10));
+		bodyLine.setMunicipality(sequencer.next(30));
+		bodyLine.setPostalCode(sequencer.next(5));
+		bodyLine.setAddressNote(sequencer.next(30));
+		bodyLine.setAmount(sequencer.next(10));
+		bodyLine.setPrice(sequencer.next(7));
+		bodyLine.setServiceCode(sequencer.next(3));
+		bodyLine.setRecipientCode(sequencer.next(30));
+		bodyLine.setPurpose(sequencer.next(30));
+		bodyLine.setEmail(sequencer.next(50));
+		bodyLine.setTelephone(sequencer.next(20));
+		return bodyLine;
+	}
+
+	/**
+	 *
 	 * @param line
 	 * @return
 	 */
@@ -70,39 +103,6 @@ public class PpeParser implements FileParser<PPEFile> {
 		footer.setTotalPrice(sequencer.next(10));
 		footer.setSum(sequencer.next(13));
 		return footer;
-	}
-
-	/**
-	 *
-	 * @param lines
-	 * @return
-	 */
-	List<PPERecord> parseBody(List<String> lines) {
-		return lines.stream()
-			.map(this::parseRecord)
-			.collect(toList());
-	}
-
-	private PPERecord parseRecord(String line) {
-		CharSequenceIterator sequencer = new CharSequenceIterator(line);
-
-		PPERecord record = new PPERecord();
-		record.setCode(sequencer.next(1));
-		record.setRecipientFullName(sequencer.next(30));
-		record.setRecipientOtherIdentifier(sequencer.next(30));
-		record.setStreet(sequencer.next(28));
-		record.setBuildingNumber(sequencer.next(10));
-		record.setMunicipality(sequencer.next(30));
-		record.setPostalCode(sequencer.next(5));
-		record.setAddressNote(sequencer.next(30));
-		record.setAmount(sequencer.next(10));
-		record.setPrice(sequencer.next(7));
-		record.setServiceCode(sequencer.next(3));
-		record.setRecipientCode(sequencer.next(30));
-		record.setPurpose(sequencer.next(30));
-		record.setEmail(sequencer.next(50));
-		record.setTelephone(sequencer.next(20));
-		return record;
 	}
 
 }

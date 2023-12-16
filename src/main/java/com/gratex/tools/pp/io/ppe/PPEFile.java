@@ -61,22 +61,22 @@ public final class PPEFile extends PPFile { // TODO: review hierarchy
 	}
 
 	private void appendBody(StringBuilder content) {
-		for (PPERecord record : body) {
-			content.append(record.getCode())
-				   .append(record.getRecipientFullName())
-				   .append(record.getRecipientOtherIdentifier())
-				   .append(record.getStreet())
-				   .append(record.getBuildingNumber())
-				   .append(record.getMunicipality())
-				   .append(record.getPostalCode())
-				   .append(record.getAddressNote())
-				   .append(record.getAmount())
-				   .append(record.getPrice())
-				   .append(record.getServiceCode())
-				   .append(record.getRecipientCode())
-				   .append(record.getPurpose())
-				   .append(record.getEmail())
-				   .append(record.getTelephone())
+		for (PPERecord bodyLine : body) {
+			content.append(bodyLine.getCode())
+				   .append(bodyLine.getRecipientFullName())
+				   .append(bodyLine.getRecipientOtherIdentifier())
+				   .append(bodyLine.getStreet())
+				   .append(bodyLine.getBuildingNumber())
+				   .append(bodyLine.getMunicipality())
+				   .append(bodyLine.getPostalCode())
+				   .append(bodyLine.getAddressNote())
+				   .append(bodyLine.getAmount())
+				   .append(bodyLine.getPrice())
+				   .append(bodyLine.getServiceCode())
+				   .append(bodyLine.getRecipientCode())
+				   .append(bodyLine.getPurpose())
+				   .append(bodyLine.getEmail())
+				   .append(bodyLine.getTelephone())
 				   .append(System.lineSeparator());
 		}
 	}

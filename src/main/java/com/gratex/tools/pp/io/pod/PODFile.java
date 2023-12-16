@@ -59,12 +59,12 @@ public final class PODFile extends PPFile {
 	}
 
 	private void appendBody(StringBuilder content) {
-		for (PODRecord record : body) {
-			content.append(record.getCode())
-				   .append(record.getFileNumber())
-				   .append(record.getRecipientCode())
-				   .append(record.getAmount())
-				   .append(record.getPrice())
+		for (PODRecord bodyLine : body) {
+			content.append(bodyLine.getCode())
+				   .append(bodyLine.getFileNumber())
+				   .append(bodyLine.getRecipientCode())
+				   .append(bodyLine.getAmount())
+				   .append(bodyLine.getPrice())
 				   .append(System.lineSeparator());
 		}
 	}

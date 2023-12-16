@@ -69,19 +69,19 @@ public class VRTFile extends PPFile {
 	}
 
 	private void appendBody(StringBuilder content) {
-		for (VRTRecord record : body) {
-			content.append(record.getCode())
-				   .append(record.getRecipientFullName())
-				   .append(record.getRecipientOtherIdentifier())
-				   .append(record.getStreet())
-				   .append(record.getBuildingNumber())
-				   .append(record.getMunicipality())
-				   .append(record.getPostOfficePostalCode())
-				   .append(record.getAddressNote())
-				   .append(record.getRecipientCode())
-				   .append(record.getAmount())
-				   .append(record.getFileNumber())
-				   .append(record.getReasonUnpaid())
+		for (VRTRecord bodyLine : body) {
+			content.append(bodyLine.getCode())
+				   .append(bodyLine.getRecipientFullName())
+				   .append(bodyLine.getRecipientOtherIdentifier())
+				   .append(bodyLine.getStreet())
+				   .append(bodyLine.getBuildingNumber())
+				   .append(bodyLine.getMunicipality())
+				   .append(bodyLine.getPostOfficePostalCode())
+				   .append(bodyLine.getAddressNote())
+				   .append(bodyLine.getRecipientCode())
+				   .append(bodyLine.getAmount())
+				   .append(bodyLine.getFileNumber())
+				   .append(bodyLine.getReasonUnpaid())
 				   .append(System.lineSeparator());
 		}
 	}
