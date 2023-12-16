@@ -6,7 +6,7 @@ import java.io.IOException;
  *
  * @author mkrajcovicux
  */
-public interface PPFileConverter<IN extends PPFile, OUT extends PPFile> {
+public interface PPFileConverter<T extends PPFile, R extends PPFile> {
 
 	/**
 	 *
@@ -14,6 +14,6 @@ public interface PPFileConverter<IN extends PPFile, OUT extends PPFile> {
 	 * @return
 	 * @throws IOException
 	 */
-	public OUT convert(IN source) throws IOException;
+	public R convert(T source) throws IOException;
 
 }
