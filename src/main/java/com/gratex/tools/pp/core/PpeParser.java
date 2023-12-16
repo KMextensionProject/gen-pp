@@ -12,6 +12,7 @@ import com.gratex.tools.pp.io.ppe.PPEFile;
 import com.gratex.tools.pp.io.ppe.PPEFooter;
 import com.gratex.tools.pp.io.ppe.PPEHeader;
 import com.gratex.tools.pp.io.ppe.PPERecord;
+import com.gratex.tools.pp.utils.CharSequenceIterator;
 
 /**
  *
@@ -39,20 +40,18 @@ public class PpeParser implements FileParser<PPEFile> {
 	 * @return
 	 */
 	PPEHeader parseHeader(String line) {
-		// TODO: convert this to meta data objects and document it
-		int start = 0;
-		int end = 1;
+		CharSequenceIterator sequencer = new CharSequenceIterator(line);
 
 		PPEHeader header = new PPEHeader();
-		header.setCode(line.substring(start, end));
-		header.setIban1(line.substring((start = end), (end += 34)));
-		header.setIban2(line.substring((start = end), (end += 34)));
-		header.setFileCreated(line.substring((start = end), (end += 8)));
-		header.setSerialNumberIn12M(line.substring((start = end), (end += 4)));
-		header.setVoucherValidity(line.substring((start = end), (end += 2)));
-		header.setDiacriticsCode(line.substring((start = end), (end += 3)));
-		header.setTestLetterForDiacriticsCode(line.substring((start = end), (end += 1)));
-		header.setPayOutDate(line.substring((start = end), (end += 8)));
+		header.setCode(sequencer.next(1));
+		header.setIban1(sequencer.next(34));
+		header.setIban2(sequencer.next(34));
+		header.setFileCreated(sequencer.next(8));
+		header.setSerialNumberIn12M(sequencer.next(4));
+		header.setVoucherValidity(sequencer.next(2));
+		header.setDiacriticsCode(sequencer.next(3));
+		header.setTestLetterForDiacriticsCode(sequencer.next(1));
+		header.setPayOutDate(sequencer.next(8));
 		return header;
 	}
 
@@ -62,15 +61,14 @@ public class PpeParser implements FileParser<PPEFile> {
 	 * @return
 	 */
 	PPEFooter parseFooter(String line) {
-		int start = 0;
-		int end = 1;
+		CharSequenceIterator sequencer = new CharSequenceIterator(line);
 
 		PPEFooter footer = new PPEFooter();
-		footer.setCode(line.substring(start, end));
-		footer.setVoucherCount(line.substring((start = end), (end += 5)));
-		footer.setTotalAmount(line.substring((start = end), (end += 13)));
-		footer.setTotalPrice(line.substring((start = end), (end += 10)));
-		footer.setSum(line.substring((start = end), (end += 13)));
+		footer.setCode(sequencer.next(1));
+		footer.setVoucherCount(sequencer.next(5));
+		footer.setTotalAmount(sequencer.next(13));
+		footer.setTotalPrice(sequencer.next(10));
+		footer.setSum(sequencer.next(13));
 		return footer;
 	}
 
@@ -86,25 +84,24 @@ public class PpeParser implements FileParser<PPEFile> {
 	}
 
 	private PPERecord parseRecord(String line) {
-		int start = 0;
-		int end = 1;
+		CharSequenceIterator sequencer = new CharSequenceIterator(line);
 
 		PPERecord record = new PPERecord();
-		record.setCode(line.substring(start, end));
-		record.setRecipientFullName(line.substring((start = end), (end += 30)));
-		record.setRecipientOtherIdentifier(line.substring((start = end), (end += 30)));
-		record.setStreet(line.substring((start = end), (end += 28)));
-		record.setBuildingNumber(line.substring((start = end), (end += 10)));
-		record.setMunicipality(line.substring((start = end), (end += 30)));
-		record.setPostalCode(line.substring((start = end), (end += 5)));
-		record.setAddressNote(line.substring((start = end), (end += 30)));
-		record.setAmount(line.substring((start = end), (end += 10)));
-		record.setPrice(line.substring((start = end), (end += 7)));
-		record.setServiceCode(line.substring((start = end), (end += 3)));
-		record.setRecipientCode(line.substring((start = end), (end += 30)));
-		record.setPurpose(line.substring((start = end), (end += 30)));
-		record.setEmail(line.substring((start = end), (end += 50)));
-		record.setTelephone(line.substring((start = end), (end += 20)));
+		record.setCode(sequencer.next(1));
+		record.setRecipientFullName(sequencer.next(30));
+		record.setRecipientOtherIdentifier(sequencer.next(30));
+		record.setStreet(sequencer.next(28));
+		record.setBuildingNumber(sequencer.next(10));
+		record.setMunicipality(sequencer.next(30));
+		record.setPostalCode(sequencer.next(5));
+		record.setAddressNote(sequencer.next(30));
+		record.setAmount(sequencer.next(10));
+		record.setPrice(sequencer.next(7));
+		record.setServiceCode(sequencer.next(3));
+		record.setRecipientCode(sequencer.next(30));
+		record.setPurpose(sequencer.next(30));
+		record.setEmail(sequencer.next(50));
+		record.setTelephone(sequencer.next(20));
 		return record;
 	}
 
