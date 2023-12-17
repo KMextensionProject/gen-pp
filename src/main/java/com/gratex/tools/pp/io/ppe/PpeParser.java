@@ -25,10 +25,17 @@ public class PpeParser implements FileParser<PPEFile> {
 	@Override
 	public PPEFile parse(Path source, Charset encoding) throws IOException {
 		List<String> lines = Files.readAllLines(source, encoding);
-		PPEHeader header = parseHeader(lines.remove(0));
-		PPEFooter footer = parseFooter(lines.remove(lines.size() - 1));
-		List<PPERecord> body = parseBody(lines);
-		return new PPEFile(header, body, footer);
+		lines.removeIf(e -> e.trim().isEmpty());
+
+		try {
+			PPEHeader header = parseHeader(lines.remove(0));
+			PPEFooter footer = parseFooter(lines.remove(lines.size() - 1));
+			List<PPERecord> body = parseBody(lines);
+			return new PPEFile(header, body, footer);
+
+		} catch (UnsupportedOperationException uoex) {
+			throw new IOException("data integrity violation", uoex);
+		}
 	}
 
 	/**

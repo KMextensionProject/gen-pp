@@ -1,6 +1,7 @@
 package com.gratex.tools.pp.core;
 
 import static com.gratex.tools.pp.core.FileType.PPE;
+import static java.util.Arrays.asList;
 import static java.util.logging.Logger.getLogger;
 
 import java.io.File;
@@ -26,6 +27,8 @@ public class GenPPStarter {
 	}
 
 	public static void main(String[] args) throws Exception {
+		printHelpIfAsked(args);
+
 		Path source = parseSourceLocation(args);
 		Path target = parseTargetLocation(args);
 		try {
@@ -36,7 +39,17 @@ public class GenPPStarter {
 		} catch (NoSuchFileException nsf) {
 			LOGGER.severe("No such file: " + nsf.getFile());
 		} catch (IOException ioex) {
-			LOGGER.severe("Bad things happen... " + ioex.getMessage());
+			LOGGER.severe(() -> ioex.getMessage() + ": " + ioex.getCause().getStackTrace()[1]);
+		}
+	}
+
+	private static void printHelpIfAsked(String[] args) {
+		boolean hasHelpOption = asList(args).stream()
+			.anyMatch(arg -> arg.contains("-help")); // [-/--help]
+
+		if (hasHelpOption) {
+			LOGGER.info("Proper usage: ./gen-pp <.ppe_file_location> [<output_directory>]");
+			System.exit(0);
 		}
 	}
 
