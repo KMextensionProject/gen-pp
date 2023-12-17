@@ -1,4 +1,4 @@
-package com.gratex.tools.pp.core;
+package com.gratex.tools.pp.io.ppe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,10 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import com.gratex.tools.pp.io.ppe.PPEFooter;
-import com.gratex.tools.pp.io.ppe.PPEHeader;
-import com.gratex.tools.pp.io.ppe.PPERecord;
 
 class PpeParserTest {
 

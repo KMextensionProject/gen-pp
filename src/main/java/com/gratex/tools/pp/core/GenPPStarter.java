@@ -1,6 +1,7 @@
 package com.gratex.tools.pp.core;
 
 import static com.gratex.tools.pp.core.FileType.PPE;
+import static java.util.logging.Logger.getLogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import com.gratex.tools.pp.io.ppe.PPEFile;
+import com.gratex.tools.pp.io.ppe.PpeParser;
 
 /**
  *
@@ -20,7 +22,7 @@ public class GenPPStarter {
 	private static final Logger LOGGER;
 	static {
 		System.setProperty("java.util.logging.SimpleFormatter.format", "[%4$s] %5$s%n");
-		LOGGER = Logger.getLogger("GenPPStarter");
+		LOGGER = getLogger("GenPPStarter");
 	}
 
 	public static void main(String[] args) throws Exception {
