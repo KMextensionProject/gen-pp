@@ -93,6 +93,6 @@ public class GenPPStarter {
 		String fileExtension = file.getFileType().getFileExtension();
 		Path targetFile = Paths.get(target + fileExtension);
 		file.write(targetFile);
-		LOGGER.info(() -> fileExtension + " file created: " + targetFile);
+		LOGGER.info(() -> fileExtension + " file created: " + targetFile.toAbsolutePath().normalize());
 	}
 }
