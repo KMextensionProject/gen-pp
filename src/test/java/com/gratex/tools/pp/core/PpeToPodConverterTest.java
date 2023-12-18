@@ -28,8 +28,7 @@ class PpeToPodConverterTest {
 		PpeParser parser = new PpeParser();
 		PpeToPodConverter converter = new PpeToPodConverter();
 
-		// TODO: use relative paths
-		Path ppeSample = Paths.get(System.getProperty("user.dir"), "src/test/resources/b2258611_iban.ppe");
+		Path ppeSample = Paths.get("src/test/resources/b2258611_iban.ppe");
 		PPEFile ppeFile = parser.parse(ppeSample);
 		PODFile podFile = converter.convert(ppeFile);
 

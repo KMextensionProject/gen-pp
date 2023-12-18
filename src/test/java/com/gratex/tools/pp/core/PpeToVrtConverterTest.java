@@ -30,7 +30,7 @@ class PpeToVrtConverterTest {
 
 	@BeforeAll
 	void init() throws IOException {
-		ppeFile = new PpeParser().parse(Paths.get(System.getProperty("user.dir"), "src/test/resources/b2258611_iban.ppe"));
+		ppeFile = new PpeParser().parse(Paths.get("src/test/resources/b2258611_iban.ppe"));
 		vrtFile = new PpeToVrtConverter().convert(ppeFile);
 	}
 

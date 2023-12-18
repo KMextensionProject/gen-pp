@@ -2,6 +2,8 @@ package com.gratex.tools.pp.utils;
 
 import static java.util.Objects.requireNonNull;
 
+import com.gratex.tools.pp.core.DataIntegrityViolation;
+
 /**
  *
  * @author mkrajcovicux
@@ -35,11 +37,18 @@ public class CharSequenceIterator {
 		}
 		end += length;
 		if (end > maxLength) {
-			throw new UnsupportedOperationException("Reached end of source string");
+			throw new DataIntegrityViolation("Reached end of source string");
 		}
 		String result = data.substring(start, end);
 		start = end;
 		return result;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean hasMore() {
+		return end < maxLength;
 	}
 
 	/**
@@ -49,5 +58,4 @@ public class CharSequenceIterator {
 		start = 0;
 		end = 0;
 	}
-
 }

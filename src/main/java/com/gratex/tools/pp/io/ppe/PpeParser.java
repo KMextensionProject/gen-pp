@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import com.gratex.tools.pp.core.DataIntegrityViolation;
 import com.gratex.tools.pp.core.FileParser;
 import com.gratex.tools.pp.utils.CharSequenceIterator;
 
@@ -33,7 +34,7 @@ public class PpeParser implements FileParser<PPEFile> {
 			List<PPERecord> body = parseBody(lines);
 			return new PPEFile(header, body, footer);
 
-		} catch (UnsupportedOperationException uoex) {
+		} catch (DataIntegrityViolation uoex) {
 			throw new IOException("data integrity violation", uoex);
 		}
 	}
@@ -56,6 +57,8 @@ public class PpeParser implements FileParser<PPEFile> {
 		header.setDiacriticsCode(sequencer.next(3));
 		header.setTestLetterForDiacriticsCode(sequencer.next(1));
 		header.setPayOutDate(sequencer.next(8));
+
+		validateRemainingContent(sequencer);
 		return header;
 	}
 
@@ -89,6 +92,10 @@ public class PpeParser implements FileParser<PPEFile> {
 		bodyLine.setPurpose(sequencer.next(30));
 		bodyLine.setEmail(sequencer.next(50));
 		bodyLine.setTelephone(sequencer.next(20));
+
+		// commented-out on purpose until we find out why .ppe data sentences
+		// differ in length in comparison to currently valid documentation
+		// validateRemainingContent(sequencer);
 		return bodyLine;
 	}
 
@@ -106,7 +113,15 @@ public class PpeParser implements FileParser<PPEFile> {
 		footer.setTotalAmount(sequencer.next(13));
 		footer.setTotalPrice(sequencer.next(10));
 		footer.setSum(sequencer.next(13));
+
+		validateRemainingContent(sequencer);
 		return footer;
+	}
+
+	private void validateRemainingContent(CharSequenceIterator sequencer) {
+		if (sequencer.hasMore()) {
+			throw new DataIntegrityViolation("Unexpected unparsable content");
+		}
 	}
 
 }
