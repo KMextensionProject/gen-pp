@@ -19,6 +19,7 @@ import com.gratex.tools.pp.io.vrt.VRTFile;
 import com.gratex.tools.pp.io.vrt.VRTFooter;
 import com.gratex.tools.pp.io.vrt.VRTHeader;
 import com.gratex.tools.pp.io.vrt.VRTRecord;
+import com.gratex.tools.pp.utils.FormattingUtility;
 
 /**
  *
@@ -31,7 +32,7 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		return new VRTFile(
 				convertHeader(file.getHeader()),
 				convertBody(file.getBody()),
-				convertFooter(file.getFooter()));
+				convertFooter(file.getFooter(), file.getBody().size()));
 	}
 
 	private VRTHeader convertHeader(PPEHeader ppeHeader) {
@@ -90,12 +91,12 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		return vrtRecord;
 	}
 
-	private VRTFooter convertFooter(PPEFooter ppeFooter) {
+	private VRTFooter convertFooter(PPEFooter ppeFooter, int bodyLines) {
 		VRTFooter vrtFooter = new VRTFooter();
 		vrtFooter.setCode(ppeFooter.getCode());
 
 		// these two fields must be generated, because they cannot be mapped
-		vrtFooter.setDataSentencesCount(getRandomNumericString(6));
+		vrtFooter.setDataSentencesCount(FormattingUtility.formatNumber(bodyLines, 6));
 		vrtFooter.setDataSentencesAmount(getRandomNumericString(10) + ".99");
 		return vrtFooter;
 	}
