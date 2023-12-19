@@ -49,6 +49,7 @@ public class GenPPStarter {
 
 		if (hasHelpOption) {
 			LOGGER.info("Proper usage: ./gen-pp <.ppe_file_location> [<output_directory>]");
+			LOGGER.info("Note: expected charset of input file is Cp1250");
 			System.exit(0);
 		}
 	}
