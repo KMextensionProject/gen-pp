@@ -35,7 +35,8 @@ class PpeToPodConverterTest {
 		PPEHeader ppeHeader = ppeFile.getHeader();
 		PODHeader podHeader = podFile.getHeader();
 		assertEquals(ppeHeader.getCode(), podHeader.getCode());
-		assertEquals(ppeHeader.getIban1(), podHeader.getIban1());
+		// since we cannot properly map IBAN from PPE to POD, we are using hard-coded one which is expected most of the time
+		assertEquals(BankAccountPop.DAVKY_A_REGRESY.getIban(), podHeader.getIban1());
 		assertEquals(ppeHeader.getSerialNumberIn12M(), podHeader.getSerialNumberIn12M());
 		assertEquals(ppeHeader.getFileCreated().substring(4), podHeader.getYearRecieved());
 		assertEquals(ppeHeader.getFileCreated().substring(2, 4), podHeader.getMonthReceived());

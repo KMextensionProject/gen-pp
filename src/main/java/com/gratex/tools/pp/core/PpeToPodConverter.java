@@ -1,5 +1,6 @@
 package com.gratex.tools.pp.core;
 
+import static com.gratex.tools.pp.core.BankAccountPop.DAVKY_A_REGRESY;
 import static com.gratex.tools.pp.utils.DataGenerator.getRandomNumericString;
 import static com.gratex.tools.pp.utils.FormattingUtility.DAY_MONTH_FORMAT_SCALE;
 import static com.gratex.tools.pp.utils.FormattingUtility.formatNumber;
@@ -37,7 +38,8 @@ public final class PpeToPodConverter implements PPFileConverter<PPEFile, PODFile
 	private PODHeader convertHeader(PPEHeader ppeHeader) {
 		PODHeader podHeader = new PODHeader();
 		podHeader.setCode(ppeHeader.getCode());
-		podHeader.setIban1(ppeHeader.getIban1());
+		// it is not correct to map PPE IBAN to POD IBAN -> expected IBAN is other one from the POP.C_BANKACCOUNT
+		podHeader.setIban1(DataGenerator.appendSpacesToEnsureSize(DAVKY_A_REGRESY.getIban(), 34));
 		podHeader.setSerialNumberIn12M(ppeHeader.getSerialNumberIn12M());
 		podHeader.setStampNumber(getRandomNumericString(6));
 
