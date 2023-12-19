@@ -1,5 +1,7 @@
 package com.gratex.tools.pp.core;
 
+import static com.gratex.tools.pp.core.BankAccountPop.DAVKY_A_REGRESY;
+import static com.gratex.tools.pp.utils.DataGenerator.appendSpacesToEnsureSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -36,7 +38,7 @@ class PpeToPodConverterTest {
 		PODHeader podHeader = podFile.getHeader();
 		assertEquals(ppeHeader.getCode(), podHeader.getCode());
 		// since we cannot properly map IBAN from PPE to POD, we are using hard-coded one which is expected most of the time
-		assertEquals(BankAccountPop.DAVKY_A_REGRESY.getIban(), podHeader.getIban1());
+		assertEquals(appendSpacesToEnsureSize(DAVKY_A_REGRESY.getIban(), 34), podHeader.getIban1());
 		assertEquals(ppeHeader.getSerialNumberIn12M(), podHeader.getSerialNumberIn12M());
 		assertEquals(ppeHeader.getFileCreated().substring(4), podHeader.getYearRecieved());
 		assertEquals(ppeHeader.getFileCreated().substring(2, 4), podHeader.getMonthReceived());
