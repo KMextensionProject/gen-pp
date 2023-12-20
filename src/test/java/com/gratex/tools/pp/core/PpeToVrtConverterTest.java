@@ -1,5 +1,7 @@
 package com.gratex.tools.pp.core;
 
+import static com.gratex.tools.pp.core.BankAccountPop.OSOBITNY_FOND_SOCIALNA_POISTOVNA;
+import static com.gratex.tools.pp.utils.DataGenerator.appendSpacesToEnsureSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -40,7 +42,7 @@ class PpeToVrtConverterTest {
 		PPEHeader ppeHeader = ppeFile.getHeader();
 		VRTHeader vrtHeader = vrtFile.getHeader();
 		assertEquals(ppeHeader.getCode(), vrtHeader.getCode());
-		assertEquals(ppeHeader.getIban1(), vrtHeader.getIban());
+		assertEquals(appendSpacesToEnsureSize(OSOBITNY_FOND_SOCIALNA_POISTOVNA.getIban(), 34), vrtHeader.getIban());
 		assertEquals(ppeHeader.getSerialNumberIn12M(), vrtHeader.getSerialNumberIn12M());
 
 		// order in this case should be maintained
