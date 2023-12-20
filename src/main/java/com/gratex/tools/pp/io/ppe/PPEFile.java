@@ -64,7 +64,7 @@ public final class PPEFile extends PPFile {
 				   .append(header.getDiacriticsCode())
 				   .append(header.getTestLetterForDiacriticsCode())
 				   .append(header.getPayOutDate())
-				   .append(System.lineSeparator());
+				   .append("\r\n");
 	}
 
 	private void appendBody(StringBuilder content) {
@@ -84,7 +84,7 @@ public final class PPEFile extends PPFile {
 				   .append(bodyLine.getPurpose())
 				   .append(bodyLine.getEmail())
 				   .append(bodyLine.getTelephone())
-				   .append(System.lineSeparator());
+				   .append("\r\n");
 		}
 	}
 

@@ -1,5 +1,6 @@
 package com.gratex.tools.pp.core;
 
+import static com.gratex.tools.pp.core.BankAccountPop.OSOBITNY_FOND_SOCIALNA_POISTOVNA;
 import static com.gratex.tools.pp.utils.DataGenerator.appendSpacesToEnsureSize;
 import static com.gratex.tools.pp.utils.DataGenerator.getRandomNumericString;
 import static com.gratex.tools.pp.utils.FormattingUtility.fromDDMMYYYY;
@@ -19,6 +20,7 @@ import com.gratex.tools.pp.io.vrt.VRTFile;
 import com.gratex.tools.pp.io.vrt.VRTFooter;
 import com.gratex.tools.pp.io.vrt.VRTHeader;
 import com.gratex.tools.pp.io.vrt.VRTRecord;
+import com.gratex.tools.pp.utils.DataGenerator;
 import com.gratex.tools.pp.utils.FormattingUtility;
 
 /**
@@ -39,7 +41,8 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		VRTHeader vrtHeader = new VRTHeader();
 		vrtHeader.setCode(ppeHeader.getCode());
 		vrtHeader.setSerialNumberIn12M(ppeHeader.getSerialNumberIn12M());
-		vrtHeader.setIban(ppeHeader.getIban1());
+		// same as with .pod file
+		vrtHeader.setIban(DataGenerator.appendSpacesToEnsureSize(OSOBITNY_FOND_SOCIALNA_POISTOVNA.getIban(), 34));
 
 		LocalDate ppeReceived = fromDDMMYYYY(ppeHeader.getFileCreated());
 		vrtHeader.setDateReceived(toSlovakDateFormatString(ppeReceived));
@@ -53,12 +56,12 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		vrtHeader.setSenderCode("1234");
 		vrtHeader.setReturnedPrice(getRandomNumericString(10) + ".99");
 		vrtHeader.setSender(appendSpacesToEnsureSize("Martin Krajcovic", 28));
-		vrtHeader.setStampNumber("ABC123");
+		vrtHeader.setStampNumber("123456");
 		vrtHeader.setStreet(appendSpacesToEnsureSize("Galvaniho", 20));
 		vrtHeader.setTotalAmountRemitted(getRandomNumericString(10) + ".99");
 		vrtHeader.setTotalPriceRemitted(getRandomNumericString(7) + ".29");
 		vrtHeader.setUnpaidAmountAttributionDate("14.12.2023");
-		vrtHeader.setUnpaidVouchersCount(appendSpacesToEnsureSize("66", 6));
+		vrtHeader.setUnpaidVouchersCount(getRandomNumericString(6));
 		vrtHeader.setVoucherIssueDate("13.12.2023");
 		vrtHeader.setVoucherReceiveDate("13.12.2023");
 		vrtHeader.setVoucherValidityDate("20.10.2023");

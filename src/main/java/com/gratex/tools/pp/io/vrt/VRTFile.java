@@ -72,7 +72,7 @@ public class VRTFile extends PPFile {
 				   .append(header.getUnpaidVouchersCount())
 				   .append(header.getReturnedPrice())
 				   .append(header.getE2EReference())
-				   .append(System.lineSeparator());
+				   .append("\r\n");
 	}
 
 	private void appendBody(StringBuilder content) {
@@ -89,7 +89,7 @@ public class VRTFile extends PPFile {
 				   .append(bodyLine.getAmount())
 				   .append(bodyLine.getFileNumber())
 				   .append(bodyLine.getReasonUnpaid())
-				   .append(System.lineSeparator());
+				   .append("\r\n");
 		}
 	}
 

@@ -62,7 +62,7 @@ public final class PODFile extends PPFile {
 				   .append(header.getDayReceived())
 				   .append(header.getMonthReceived())
 				   .append(header.getYearRecieved())
-				   .append(System.lineSeparator());
+				   .append("\n\r");
 	}
 
 	private void appendBody(StringBuilder content) {
@@ -72,7 +72,7 @@ public final class PODFile extends PPFile {
 				   .append(bodyLine.getRecipientCode())
 				   .append(bodyLine.getAmount())
 				   .append(bodyLine.getPrice())
-				   .append(System.lineSeparator());
+				   .append("\n\r");
 		}
 	}
 
