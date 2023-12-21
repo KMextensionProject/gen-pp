@@ -29,6 +29,11 @@ import com.gratex.tools.pp.utils.FormattingUtility;
  */
 public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 
+	/**
+	 * Header has a lot of randomly generated data and fixed iban field set to {@link BankAccountPop#OSOBITNY_FOND_SOCIALNA_POISTOVNA}<br>
+	 * Body has random file number and fixed reasonUnpaid set to {@link EnumReasonUnpaid#RECIPIENT_UNKNOWN},<br>
+	 * Footer, everything is randomly set except for the code field
+	 */
 	@Override
 	public VRTFile convert(PPEFile file) throws IOException {
 		return new VRTFile(
@@ -51,7 +56,7 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		vrtHeader.setBuildingNumber(appendSpacesToEnsureSize("17/C", 7));
 		vrtHeader.setMunicipality(appendSpacesToEnsureSize("Bratislava", 20));
 		vrtHeader.setPostOfficePostalCode("82104");
-		vrtHeader.setE2EReference(appendSpacesToEnsureSize("/VS1234567890/SS1234567890/KS1234", 35));
+		vrtHeader.setE2eReference(appendSpacesToEnsureSize("/VS1234567890/SS1234567890/KS1234", 35));
 		vrtHeader.setReceivedVoucherCount("123456");
 		vrtHeader.setSenderCode("1234");
 		vrtHeader.setReturnedPrice(getRandomNumericString(10) + ".99");
@@ -86,7 +91,7 @@ public class PpeToVrtConverter implements PPFileConverter<PPEFile, VRTFile> {
 		vrtRecord.setStreet(ppeRecord.getStreet());
 		vrtRecord.setBuildingNumber(ppeRecord.getBuildingNumber());
 		vrtRecord.setAmount(ppeRecord.getAmount());
-		vrtRecord.setPostOfficePostalCode(ppeRecord.getPostalCode());
+		vrtRecord.setPostOfficePostalCode(ppeRecord.getPostOfficePostalCode());
 
 		// these two fields must be generated, because they cannot be mapped
 		vrtRecord.setFileNumber(getRandomNumericString(5));

@@ -17,8 +17,8 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import com.gratex.tools.pp.io.ppe.PPEFile;
 import com.gratex.tools.pp.io.ppe.PPEFooter;
 import com.gratex.tools.pp.io.ppe.PPEHeader;
+import com.gratex.tools.pp.io.ppe.PPEParser;
 import com.gratex.tools.pp.io.ppe.PPERecord;
-import com.gratex.tools.pp.io.ppe.PpeParser;
 import com.gratex.tools.pp.io.vrt.VRTFile;
 import com.gratex.tools.pp.io.vrt.VRTFooter;
 import com.gratex.tools.pp.io.vrt.VRTHeader;
@@ -32,7 +32,7 @@ class PpeToVrtConverterTest {
 
 	@BeforeAll
 	void init() throws IOException {
-		ppeFile = new PpeParser().parse(Paths.get("src/test/resources/b2258611_iban.ppe"));
+		ppeFile = new PPEParser().parse(Paths.get("src/test/resources/b2258611_iban.ppe"));
 		vrtFile = new PpeToVrtConverter().convert(ppeFile);
 	}
 
@@ -61,7 +61,7 @@ class PpeToVrtConverterTest {
 			assertEquals(ppeRecord.getStreet(), vrtRecord.getStreet());
 			assertEquals(ppeRecord.getBuildingNumber(), vrtRecord.getBuildingNumber());
 			assertEquals(ppeRecord.getAmount(), vrtRecord.getAmount());
-			assertEquals(ppeRecord.getPostalCode(), ppeRecord.getPostalCode());
+			assertEquals(ppeRecord.getPostOfficePostalCode(), vrtRecord.getPostOfficePostalCode());
 		}
 
 		PPEFooter ppeFooter = ppeFile.getFooter();
@@ -76,7 +76,7 @@ class PpeToVrtConverterTest {
 		assertEquals(07, vrtHeader.getBuildingNumber().length());
 		assertEquals(20, vrtHeader.getMunicipality().length());
 		assertEquals(05, vrtHeader.getPostOfficePostalCode().length());
-		assertEquals(35, vrtHeader.getE2EReference().length());
+		assertEquals(35, vrtHeader.getE2eReference().length());
 		assertEquals(06, vrtHeader.getReceivedVoucherCount().length());
 		assertEquals(04, vrtHeader.getSenderCode().length());
 		assertEquals(13, vrtHeader.getReturnedPrice().length());

@@ -19,15 +19,15 @@ import com.gratex.tools.pp.io.pod.PODRecord;
 import com.gratex.tools.pp.io.ppe.PPEFile;
 import com.gratex.tools.pp.io.ppe.PPEFooter;
 import com.gratex.tools.pp.io.ppe.PPEHeader;
+import com.gratex.tools.pp.io.ppe.PPEParser;
 import com.gratex.tools.pp.io.ppe.PPERecord;
-import com.gratex.tools.pp.io.ppe.PpeParser;
 
 class PpeToPodConverterTest {
 
 	@Test
 	@DisplayName("Conversion test for POD object obtained from PPE")
 	void conversionTest() throws IOException {
-		PpeParser parser = new PpeParser();
+		PPEParser parser = new PPEParser();
 		PpeToPodConverter converter = new PpeToPodConverter();
 
 		Path ppeSample = Paths.get("src/test/resources/b2258611_iban.ppe");
@@ -40,7 +40,7 @@ class PpeToPodConverterTest {
 		// since we cannot properly map IBAN from PPE to POD, we are using hard-coded one which is expected most of the time
 		assertEquals(appendSpacesToEnsureSize(DAVKY_A_REGRESY.getIban(), 34), podHeader.getIban1());
 		assertEquals(ppeHeader.getSerialNumberIn12M(), podHeader.getSerialNumberIn12M());
-		assertEquals(ppeHeader.getFileCreated().substring(4), podHeader.getYearRecieved());
+		assertEquals(ppeHeader.getFileCreated().substring(4), podHeader.getYearReceived());
 		assertEquals(ppeHeader.getFileCreated().substring(2, 4), podHeader.getMonthReceived());
 		assertEquals(ppeHeader.getFileCreated().substring(0, 2), podHeader.getDayReceived());
 		assertEquals(6, podHeader.getStampNumber().length());

@@ -34,8 +34,7 @@ public abstract class PPFile {
 	public abstract FileType getFileType();
 
 	/**
-	 *
-	 * @return
+	 * @return the whole file content as single String
 	 */
 	protected abstract String buildFileString();
 

@@ -5,13 +5,12 @@ import java.nio.charset.Charset;
 import java.nio.file.Path;
 
 /**
- *
- * @author mkrajcovicux
+ * Contract for parsers that are able to parse PPFile-s
  */
 public interface FileParser<R extends PPFile> {
 
 	/**
-	 *
+	 * Uses windows-1250 as default encoding
 	 * @param source
 	 * @return
 	 */
@@ -20,7 +19,6 @@ public interface FileParser<R extends PPFile> {
 	}
 
 	/**
-	 *
 	 * @param source
 	 * @param encoding
 	 * @return

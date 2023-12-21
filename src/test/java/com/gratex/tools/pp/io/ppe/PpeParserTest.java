@@ -23,7 +23,7 @@ class PpeParserTest {
 		 * š
 		 * 00000000
 		 */
-		PPEHeader header = new PpeParser().parseHeader(line);
+		PPEHeader header = new PPEParser().parseHeader(line);
 		assertEquals("1", header.getCode());
 		assertEquals("SK9181800000007000155733          ", header.getIban1());
 		assertEquals("SK3881800000007000155717          ", header.getIban2());
@@ -45,7 +45,7 @@ class PpeParserTest {
 		 * 0000018.80
 		 * 0000007003.60
 		 */
-		PPEFooter footer = new PpeParser().parseFooter(line);
+		PPEFooter footer = new PPEParser().parseFooter(line);
 		assertEquals("3", footer.getCode());
 		assertEquals("00008", footer.getVoucherCount());
 		assertEquals("0000006984.80", footer.getTotalAmount());
@@ -59,7 +59,7 @@ class PpeParserTest {
 				"2Djemaili Nagian                                             Dolné Lovčice               510       Dolné Lovčice                 91927                              0000110.800001.80001263074C0     AABQGO0                                                                                                                                            ",
 				"2Volek Emil                                                  Ulica Andreja Kubinu        3199/12   Trnava                        91701                              0000389.400002.20001210664C0     AABQGO1                                                                                                                                            "
 		);
-		List<PPERecord> body = new PpeParser().parseBody(lines);
+		List<PPERecord> body = new PPEParser().parseBody(lines);
 		assertEquals(2, body.size());
 		/*
 		 * 2
@@ -85,7 +85,7 @@ class PpeParserTest {
 		assertEquals("Dolné Lovčice               ", record_1.getStreet());
 		assertEquals("510       ", record_1.getBuildingNumber());
 		assertEquals("Dolné Lovčice                 ", record_1.getMunicipality());
-		assertEquals("91927", record_1.getPostalCode());
+		assertEquals("91927", record_1.getPostOfficePostalCode());
 		assertEquals("                              ", record_1.getAddressNote());
 		assertEquals("0000110.80", record_1.getAmount());
 		assertEquals("0001.80", record_1.getPrice());
@@ -118,7 +118,7 @@ class PpeParserTest {
 		assertEquals("Ulica Andreja Kubinu        ", record_2.getStreet());
 		assertEquals("3199/12   ", record_2.getBuildingNumber());
 		assertEquals("Trnava                        ", record_2.getMunicipality());
-		assertEquals("91701", record_2.getPostalCode());
+		assertEquals("91701", record_2.getPostOfficePostalCode());
 		assertEquals("                              ", record_2.getAddressNote());
 		assertEquals("0000389.40", record_2.getAmount());
 		assertEquals("0002.20", record_2.getPrice());

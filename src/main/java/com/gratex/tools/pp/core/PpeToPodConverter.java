@@ -27,6 +27,10 @@ import com.gratex.tools.pp.utils.DataGenerator;
  */
 public final class PpeToPodConverter implements PPFileConverter<PPEFile, PODFile> {
 
+	/**
+	 * Header has fixed iban1 field set to {@link BankAccountPop#DAVKY_A_REGRESY}, stampNumber is randomly generated,<br>
+	 * Body has random fileNumber<br>
+	 */
 	@Override
 	public PODFile convert(PPEFile file) throws IOException {
 		return new PODFile(
@@ -46,7 +50,7 @@ public final class PpeToPodConverter implements PPFileConverter<PPEFile, PODFile
 		LocalDate ppeCreated = fromDDMMYYYY(ppeHeader.getFileCreated());
 		podHeader.setDayReceived(formatNumber(ppeCreated.getDayOfMonth(), DAY_MONTH_FORMAT_SCALE));
 		podHeader.setMonthReceived(formatNumber(ppeCreated.getMonthValue(), DAY_MONTH_FORMAT_SCALE));
-		podHeader.setYearRecieved(String.valueOf(ppeCreated.getYear()));
+		podHeader.setYearReceived(String.valueOf(ppeCreated.getYear()));
 		return podHeader;
 	}
 
